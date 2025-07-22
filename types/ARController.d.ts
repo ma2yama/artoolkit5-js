@@ -303,10 +303,10 @@ export default class ARController {
     loadMultiMarker(urlOrData: string): Promise<any[]>;
     /**
      * Loads an NFT marker from the given URL or data string
-     * @param {string} urlOrData - The URL prefix or data of the NFT markers to load.
+     * @param {string | [string, string, string]} urlOrData - The URL prefix or data of the NFT markers to load.
      * @returns {Promise<number>}
     */
-    loadNFTMarker(urlOrData: string): Promise<number>;
+    loadNFTMarker(urlOrData: string | [string, string, string]): Promise<number>;
     /**
      * Populates the provided float array with the current transformation for the specified marker. After
      * a call to detectMarker, all marker information will be current. Marker transformations can then be

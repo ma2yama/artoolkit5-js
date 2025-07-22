@@ -579,7 +579,7 @@ export default class ARController {
     return obj;
   };
 
-  trackMultiMarkersId(id, markerWidth){
+  trackMultiMarkersId(id, markerWidth) {
     let obj = this.multiMarkers[id];
     if (!obj) {
       this.multiMarkers[id] = obj = {
@@ -794,7 +794,7 @@ export default class ARController {
 
   /**
    * Loads an NFT marker from the given URL or data string
-   * @param {string} urlOrData - The URL prefix or data of the NFT markers to load.
+   * @param {string | [string, string, string]} urlOrData - The URL prefix or data of the NFT markers to load.
    * @returns {Promise<number>}
   */
   async loadNFTMarker(urlOrData) {

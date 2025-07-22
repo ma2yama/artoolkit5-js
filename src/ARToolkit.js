@@ -184,22 +184,35 @@ export default class ARToolkit {
    * Used by the ARController class. 
    * It is preferred to use loadNFTMarker instead with a new ARcontroller instance.
    * @param {number} arId 
-   * @param {string} url 
-   * @returns {number}
+   * @param {string | [string, string, string]} url
+   * @returns {Promise<number>}
    */
   async addNFTMarker(arId, url) {
-    // url doesn't need to be a valid url. Extensions to make it valid will be added here
     const targetPrefix = '/markerNFT_' + this.markerCount++;
     const extensions = ['fset', 'iset', 'fset3'];
 
-    const storeMarker = async function (ext) {
-      const fullUrl = url + '.' + ext;
-      const target = targetPrefix + '.' + ext;
-      const data = await Utils.fetchRemoteData(fullUrl);
-      this._storeDataFile(data, target);
-    };
+    let promises;
 
-    const promises = extensions.map(storeMarker, this);
+    if (Array.isArray(url) && url.length === 3) {
+      promises = url.map(async (fullUrl) => {
+        const urlExtension = fullUrl.split('.').pop();
+        const target = targetPrefix + '.' + urlExtension;
+        const data = await Utils.fetchRemoteData(fullUrl);
+        this._storeDataFile(data, target);
+      });
+    } else if (typeof url === 'string') {
+      const baseUrl = url;
+      const storeMarker = async function (ext) {
+        const fullUrl = baseUrl + '.' + ext;
+        const target = targetPrefix + '.' + ext;
+        const data = await Utils.fetchRemoteData(fullUrl);
+        this._storeDataFile(data, target);
+      };
+      promises = extensions.map(storeMarker, this);
+    } else {
+      throw new Error('URL must be either a string or an array of 3 URLs');
+    }
+
     await Promise.all(promises);
 
     // return the internal marker ID
