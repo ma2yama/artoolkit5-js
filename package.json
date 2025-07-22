@@ -1,10 +1,15 @@
 {
-  "name": "@ar-js-org/artoolkit5-js",
-  "version": "0.3.1",
+  "name": "@ma2yama/artoolkit5-js",
+  "version": "0.3.3",
   "description": "ES6 module port of artoolkit5",
   "main": "dist/ARToolkit.js",
   "types": "types/index.d.ts",
-  "files": ["types"],
+  "files": [
+    "types"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "webpack --mode development --progress --color --watch",
     "build": "webpack --mode production",
@@ -13,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andypotato/artoolkit5-js.git"
+    "url": "git+https://github.com/ma2yama/artoolkit5-js.git"
   },
-  "author": "Andreas Schallwig",
+  "author": "matsuyama@fusic.co.jp",
   "license": "LGPL-3.0",
   "bugs": {
-    "url": "https://github.com/andypotato/artoolkit5-js/issues"
+    "url": "https://github.com/ma2yama/artoolkit5-js/issues"
   },
-  "homepage": "https://github.com/andypotato/artoolkit5-js#readme",
+  "homepage": "https://github.com/ma2yama/artoolkit5-js#readme",
   "keywords": [
     "AR",
     "Augmented Reality",
