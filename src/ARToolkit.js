@@ -195,7 +195,7 @@ export default class ARToolkit {
 
     if (Array.isArray(url) && url.length === 3) {
       promises = url.map(async (fullUrl) => {
-        const urlExtension = fullUrl.split('.').pop();
+        const urlExtension = fullUrl.split('?')[0].split('.').pop();
         const target = targetPrefix + '.' + urlExtension;
         const data = await Utils.fetchRemoteData(fullUrl);
         this._storeDataFile(data, target);
